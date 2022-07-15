@@ -1,0 +1,53 @@
+// BREADCRUMB
+
+.breadcrumb {
+  font-family: $body-font;
+  font-size: 11px;
+  line-height: 1.45;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: #707073;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  ul {
+    padding-left: 0;
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style-type: none !important;
+    li {
+      margin-left: 15px;
+      @include bp(tablet) {
+        margin-left: 7.5px;
+      }
+      a {
+        color: #707073 !important;
+        font-weight: 400;
+        
+        @include clamp(12px,18px);
+        
+      }
+      a:not([href]) {
+        color: $highlight-color;
+      }
+      &::after {
+        color: #b5b5b5;
+        content: "/";
+        margin-left: 15px;
+        @include bp(tablet) {
+          margin-left: 7.5px;
+        }
+      }
+      &:last-child {
+        &::after {
+          content: none;
+        }
+      }
+    }
+  }
+}
+

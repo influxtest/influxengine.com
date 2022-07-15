@@ -1,0 +1,93 @@
+.swiper-controls {
+  font-family: $body-font;
+}
+.swiper-prev-button,.swiper-next-button {
+  height: 50px;
+  width: 50px;
+  background: white;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &.swiper-button-disabled {
+    opacity: .5;
+  }
+}
+
+.testimonialSwiper {
+  .swiper-button-testimonial-prev, .swiper-button-testimonial-next {
+    position: absolute; 
+    cursor: pointer;
+    top: 40%;
+    z-index: 3;
+    @media only screen and (max-width: 1500px) {
+      top: auto;
+      bottom: 10%;
+     }
+   }
+  .swiper-button-testimonial-prev {
+    left: 150px;
+    @include bp(fullhd) {
+      left: 50px;
+    }
+    @include bp(tablet) {
+      left: 0px;
+    }
+  }
+  .swiper-button-testimonial-next {
+    right: 150px;
+    @include bp(fullhd) {
+      right: 50px;
+    }
+    @include bp(tablet) {
+      right: 0px;
+     }
+  }
+}
+
+.officeSliderWrapper {
+  .office-controls {
+    display: flex;
+    margin-right: 50px;
+    margin-bottom: 40px;
+    gap: 10px !important;
+
+    @include bp(tablet) {
+      margin: 0px 20px 10px 0px;
+    }
+
+    .swiper-prev-button,
+    .swiper-next-button {
+      background: transparent;
+      border: 1px solid white;
+      height: 50px;
+      width: 50px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &.swiper-button-disabled {
+        opacity: 0.5;
+      }
+
+      @include bp(tablet) {
+        height: 35px !important;
+        width: 35px !important;
+
+        img {
+          max-width: 6px;
+        }
+      }
+    }
+  }
+  .swiper-slide {
+    opacity: 1;
+    transition: opacity 0.3s;
+    overflow: visible;
+
+    .swiper-pagination-office {
+      @include clamp(20px, 25px);
+    }
+  }
+}

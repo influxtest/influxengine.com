@@ -1,0 +1,161 @@
+// INFLUX DEFAULTS
+
+/* UNSET STYLES */
+
+.select select:focus,
+.select select.is-focused,
+.select select:active,
+.select select.is-active,
+*:focus {
+  outline: none;
+}
+
+.select select:focus,
+.select select.is-focused,
+.select select:active,
+.select select.is-active {
+  border: none;
+}
+
+
+menu {
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0;
+}
+
+/* HTML DEFAULTS */
+
+html,body {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+hr {
+  height: 1px;
+  background: $border-color;
+  border: none;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  img {
+    width: 100%;
+  }
+  &.is-1-by-2 {
+    padding-bottom: 42.15%;
+  }
+
+  iframe,
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &.youtube-container {
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      background-image: url(/assets/img/_defaults/youtube-play-button.svg);
+      background-size: 80px;
+      background-repeat: no-repeat;
+      background-position: center center;
+      cursor: pointer;
+    }
+    &.loaded {
+      &::after {
+        content: none;
+      }
+    }
+  }
+}
+
+a {
+  transition: color .4s ease;
+  display: inline-block;
+  @include bp(tablet) {
+    display: inline;
+  }
+  &:hover {
+    color: $highlight-color;
+  }
+}
+
+
+ul.no-bullet {
+  list-style-type: none !important;
+  padding-left: 0 !important;
+}
+
+section:not(.header):not(.footer):not(.masthead) p > a:not(.button),section:not(.header):not(.footer):not(.masthead) li > a:not(.button),section:not(.header):not(.footer):not(.masthead) span > a:not(.button) {
+  color: $highlight-color;
+  display: inline;
+  background: linear-gradient($highlight-color, $highlight-color);
+  background-size: 0 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .4s ease;
+  &:hover,&:focus {
+    color: $highlight-color;
+    background-size: 100% 1px;
+  }
+}
+
+.link {
+  color: $highlight-color;
+  display: inline;
+  background: linear-gradient($highlight-color, $highlight-color);
+  background-size: 0 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .4s ease;
+  &:hover,&:focus {
+    color: $highlight-color;
+    background-size: 100% 1px;
+  }
+}
+
+section:not(.header):not(.footer):not(.masthead) ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+}
+
+section:not(.header):not(.footer):not(.masthead) ol {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+}
+
+.open {
+  .fixedAda {
+    z-index: -1;
+  }
+}
+
+.modal .modal-content {
+  display: block;
+  min-width: 50%;
+  @include bp(desktop) {
+    min-width: 80%;
+    max-width: 1200px;
+  }
+}

@@ -1,0 +1,21 @@
+on: 
+  push:
+    branches: stage
+name: 🎭 Deploy website on push to stage server
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2.3.2
+    - name: 📂 Sync files
+      uses: burnett01/rsync-deployments@4.1
+      with:
+        switches: -avzr --delete --exclude=".git/"
+        path: /
+        remote_path: ${{ secrets.STAGEFOLDER }}${{github.event.repository.name}}/
+        remote_host: ${{ secrets.STAGEURL }}
+        remote_port: ${{ secrets.STAGEPORT }}
+        remote_user: ${{ secrets.STAGEUSER }}
+        remote_key: ${{ secrets.STAGEKEY }}

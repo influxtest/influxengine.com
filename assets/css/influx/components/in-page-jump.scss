@@ -1,0 +1,118 @@
+.in-page-jump {
+  min-height: 50px;
+  position: relative;
+  z-index: 10;
+  
+  & .in-page-jump + {
+    .in-page-jump__container {
+      a {
+        &:first-child {
+          i {
+            transform: rotate(-90deg);
+          }
+        }
+      }
+    }
+  }
+  .in-page-jump__container {
+    display: flex;
+
+    align-content: center;
+    justify-content: space-around;
+    width: 100%;
+
+    padding: 15px;
+    z-index: 10;
+
+    background: #c4c4c4;
+    transition: box-shadow 0.4s ease;
+    svg path {
+      stroke: $highlight-color;
+    }
+    @include bp(desktop) {
+      top: 71px;
+    }
+    @include bp(desktop) {
+      height: 50px;
+      overflow: hidden;
+      display: block;
+      padding: 0;
+      transition: height 0.4s ease;
+      &.open {
+        height: 100vh;
+        .in-page-jump__menu {
+          svg {
+            transform: rotate(90deg);
+          }
+        }
+      }
+    }
+    &.scrolled {
+      position: fixed;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .in-page-jump__menu {
+      display: none;
+      line-height: 50px;
+      text-align: center;
+      font-weight: $body-bold;
+      color: $body-color;
+      svg {
+        transition: transform 0.4s ease;
+      }
+      @include bp(desktop) {
+        display: block;
+      }
+    }
+    .in-page-jump__item {
+      display: inline-block;
+      text-align: center;
+      transition: color 0.4s ease;
+      color: $body-color;
+      font-weight: $body-medium;
+      font-size: 16px;
+      line-height: 1.7;
+      &:hover {
+        svg {
+          transform: translateX(5px);
+        }
+      }
+      svg {
+        transition: transform 0.4s ease;
+        padding-left: 0;
+      }
+      @include bp(mobile) {
+        line-height: 2.2;
+      }
+      @include bp(desktop) {
+        display: block;
+        margin-bottom: 5px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+     
+      // &:hover {
+      // 	color: white;
+      // }
+      &.scrolled {
+        // color: white;
+        color: $highlight-color;
+        svg {
+          transform: rotate(90deg);
+          
+          .up {
+            transform: rotate(270deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+section[data-ipj] ~ .in-page-jump a:nth-child(2) svg {
+  transform: rotate(-90deg);
+}
+section[data-ipj] ~ .in-page-jump a.scrolled:nth-child(2) svg {
+  transform: rotate(0deg);
+}

@@ -1,0 +1,524 @@
+.flexy {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+  &.is-vcentered {
+    align-items: center;
+  }
+  &.is-multiline {
+    flex-wrap: wrap;
+  }
+  &.is-centered {
+    justify-content: center;
+  }
+
+  @include bp(tablet) {
+    display: block;
+    &.tablet-2 {
+      display: flex;
+      flex-wrap: wrap;
+
+      @include bp(mobile) {
+        display: block;
+      }
+    }
+  }
+  .sitbottom {
+    margin-top: auto;
+  }
+  .sitleft {
+    margin-left: -180px;
+    @include bp(tablet) {
+      margin-left: 0;
+    }
+  }
+  &.flexd-clmn {
+    flex-direction: column;
+  }
+  &.reversed-mobile {
+    @include bp(tablet) {
+      display: flex;
+      flex-direction: column-reverse;
+      > .flexy-item {
+        &:first-child {
+          margin-bottom: 0;
+        }
+        &:last-child {
+          margin-bottom: 25px;
+        }
+      }
+    }
+  }
+  &.gap10 {
+    .flexy-item {
+      margin-left: 5px;
+      margin-right: 5px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      @include bp(tablet) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+  &.gap20 {
+    .flexy-item {
+      margin-left: 10px;
+      margin-right: 10px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      @include bp(tablet) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+  &.gap50 {
+    .flexy-item {
+      margin-left: 25px;
+      margin-right: 25px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      @include bp(tablet) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+    &.tablet-2 {
+      @include bp(tablet) {
+        .flexy-item {
+          margin-left: 12.5px;
+          margin-right: 12.5px;
+          flex-basis: calc(50% - 25px);
+          &:nth-last-child(1),
+          &:nth-last-child(2) {
+            margin-bottom: 0;
+
+            @include bp(mobile) {
+              margin-bottom: 25px;
+            }
+          }
+          &:nth-child(even) {
+            margin-right: 0;
+          }
+          &:nth-child(odd) {
+            margin-left: 0;
+          }
+          @include bp(mobile) {
+            flex-basis: 100%;
+            margin-left: 0;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+  &.gap60 {
+    .flexy-item {
+      margin-left: 30px;
+      margin-right: 30px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      @include bp(tablet) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+  &.gap80 {
+    .flexy-item {
+      margin-left: 40px;
+      margin-right: 40px;
+      &:first-of-type {
+        margin-left: 0;
+      }
+      &:last-of-type {
+        margin-right: 0;
+      }
+      @include bp(tablet) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+  &.gap100 {
+    > .flexy-item {
+      margin-left: 50px;
+      margin-right: 50px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      @include bp(tablet) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+  &.gap130 {
+    .flexy-item {
+      margin-left: 65px;
+      margin-right: 65px;
+      @include bp(desktop) {
+        margin-left: 25px;
+        margin-right: 25px;
+      }
+      @include bp(tablet) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  &.gap200 {
+    > .flexy-item {
+      margin-left: 100px;
+      margin-right: 100px;
+      &:first-child {
+        margin-left: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      @include bp(tablet) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+  .flexy-item {
+    display: block;
+    flex: 1;
+    &.has-swiper {
+      min-width: 0;
+    }
+    &.flexy-shrink {
+      > * {
+        max-width: 675px;
+      }
+      &:first-child {
+        > * {
+          margin-left: auto;
+        }
+        @include bp(tablet) {
+          > * {
+            margin-left: 0 !important;
+          }
+        }
+      }
+    }
+    @for $i from 1 through 30 {
+      &.is-#{$i} {
+        flex-basis: calc(#{percentage($i / 12)} - #{$gutter});
+        &-widescreen {
+          @include bp(widescreen) {
+            flex-basis: calc(#{percentage($i / 12)} - #{$gutter});
+          }
+        }
+        &-desktop {
+          @include bp(desktop) {
+            flex-basis: calc(#{percentage($i / 12)} - #{$gutter});
+          }
+        }
+        &-tablet {
+          @include bp(tablet) {
+            flex-basis: calc(#{percentage($i / 12)} - (#{$gutter} / 2));
+          }
+        }
+        &-mobile {
+          @include bp(mobile) {
+            flex-basis: calc(#{percentage($i / 12)} - (#{$gutter} / 2));
+          }
+        }
+      }
+    }
+
+    @include bp(tablet) {
+      margin-bottom: $gutter / 2;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    &.flexy-image {
+      align-self: stretch;
+      position: relative;
+      min-height: 500px;
+      img {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        &.top {
+          object-position: top;
+        }
+        &.bottom {
+          object-position: bottom;
+        }
+        &.left {
+          object-position: left;
+        }
+        &.right {
+          object-position: right;
+        }
+      }
+    }
+    &.is-20 {
+      flex-basis: 20%;
+    }
+    &.is-25 {
+      flex-basis: 25%;
+    }
+    &.is-30 {
+      flex-basis: 30%;
+    }
+    &.is-35 {
+      flex-basis: 35%;
+    }
+    &.is-40 {
+      flex-basis: 40%;
+    }
+    &.is-45 {
+      flex-basis: 45%;
+    }
+    &.is-50 {
+      flex-basis: 50%;
+    }
+    &.is-55 {
+      flex-basis: 55%;
+    }
+    &.is-60 {
+      flex-basis: 60%;
+    }
+    &.is-65 {
+      flex-basis: 65%;
+    }
+    &.is-50-minus-50 {
+      flex-basis: calc(50% - 50px);
+      flex-grow: 0;
+    }
+    &.is-50-add-50 {
+      flex-basis: calc(50% + 50px);
+      flex-grow: 0;
+    }
+    &.is-50-add-150 {
+      flex-basis: calc(50% + 150px);
+      flex-grow: 0;
+    }
+    &.is-50-add-100 {
+      flex-basis: calc(50% + 100px);
+      flex-grow: 0;
+    }
+    &.is-70 {
+      flex-basis: 70%;
+    }
+    &.is-75 {
+      flex-basis: 75%;
+    }
+    &.is-80 {
+      flex-basis: 80%;
+    }
+    &.align-bottom {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+  }
+  &.is-swipable-touch {
+    @include bp(tablet) {
+      flex-wrap: nowrap;
+      display: flex !important;
+      overflow-x: scroll !important;
+      -webkit-overflow-scrolling: touch !important;
+      scroll-padding: 0 25px;
+      scroll-snap-type: mandatory;
+      scroll-snap-points-x: repeat(300px);
+      scroll-snap-type: x mandatory;
+      &::after {
+        content: ".";
+        display: block;
+        width: 25px;
+        height: 100%;
+        opacity: 0;
+      }
+      .flexy-item {
+        flex-basis: 75%;
+        flex-shrink: 0;
+        margin-left: 12.5px;
+        margin-right: 12.5px;
+        margin-bottom: 0px !important;
+        scroll-snap-align: center;
+
+        &:first-child {
+          margin-left: 25px !important;
+        }
+        &:last-child {
+          margin-right: 25px !important;
+        }
+      }
+    }
+  }
+}
+.flexy-pad {
+  .flexy-item {
+    padding: 25px;
+  }
+  @include bp(tablet) {
+    margin: 0px;
+    .flexy-item {
+      padding: 0px;
+    }
+  }
+}
+
+.block-desktop {
+  @include bp(desktop) {
+    display: block !important;
+  }
+  &.flexy {
+    @include bp(desktop) {
+      display: block !important;
+    }
+    .flexy-image {
+      img {
+        position: static;
+      }
+    }
+    .flexy-item {
+      @include bp(desktop) {
+        margin-right: 0;
+      }
+    }
+    .center-image {
+      @include bp(desktop) {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+    }
+  }
+  &.gap100 {
+    @include bp(desktop) {
+      .flexy-item:first-child {
+        margin-bottom: 50px;
+      }
+      .flexy-item {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+    @include bp(tablet) {
+      .flexy-item:first-child {
+        margin-bottom: 25px;
+      }
+    }
+  }
+}
+
+.block-widescreen {
+  @include bp(widescreen) {
+    display: block !important;
+  }
+  &.flexy {
+    @include bp(widescreen) {
+      display: block !important;
+    }
+    // .flexy-image {
+    //   img {
+    //     position: static;
+    //   }
+    // }
+    .flexy-item {
+      @include bp(widescreen) {
+        margin-right: 0;
+      }
+    }
+    .center-image {
+      @include bp(widescreen) {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+    }
+  }
+  &.gap100 {
+    @include bp(widescreen) {
+      .flexy-item:first-child {
+        margin-bottom: 50px;
+      }
+      .flexy-item {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+    @include bp(tablet) {
+      .flexy-item:first-child {
+        margin-bottom: 25px;
+      }
+    }
+  }
+}
+
+.is-4 {
+  max-width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  @include bp(tablet) {
+    max-width: none;
+  }
+  &.is-6-widescreen {
+    @include bp(widescreen) {
+      max-width: 50%;
+    }
+    @include bp(tablet) {
+      max-width: none;
+    }
+  }
+}
+
+.is-6 {
+  max-width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  @include bp(tablet) {
+    max-width: none;
+  }
+}
+
+.is-6-widescreen {
+  @include bp(widescreen) {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @include bp(tablet) {
+    max-width: none;
+  }
+}

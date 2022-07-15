@@ -1,0 +1,134 @@
+
+.selector-container {
+  .selectors {
+    @include mw(widescreen) {
+      .selector {
+        max-height: none !important;
+      }
+    }
+    @include bp(widescreen) {
+      
+      padding: 10px;
+      box-shadow: $box-shadow-light;
+      position: relative;
+      background: white;
+      flex-direction: column;
+      .active {
+        position: relative;
+        &::after {
+          content: " ";
+          position: absolute;
+          right: 5px;
+          top: 0;
+          height: 25px;
+          width: 25px;
+          top: 50%;
+          transform: translateY(-50%);
+          
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%23#{str-slice($highlight-color, 2, -1)}' stroke-width='3' stroke-linecap='square' stroke-linejoin='arcs'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+          background-size: contain;
+          background-position: center center;
+          background-repeat: no-repeat;
+          pointer-events: none;
+        }
+      }
+      .selector {
+        display: block;
+        line-height: 2;
+      }
+    }
+    .selector {
+      transition: all .4s ease;
+      cursor: pointer;
+      overflow: hidden;
+      img {
+        transition: all .4s ease;
+      }
+      &.active {
+        color: $highlight-color;
+      }
+     
+    }
+  }
+  
+  .selector-item {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+    transition: opacity .4s ease;
+    pointer-events: none;
+    z-index: -1;
+    &.active {
+      display: block;
+      animation-fill-mode: forwards;
+      -webkit-animation-duration: 0.4s;
+      animation-duration: 0.4s;
+      position: static;
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+
+.sub-selector-container {
+  .sub-selectors {
+    
+    .sub-selector {
+      transition: all .4s ease;
+      cursor: pointer;
+      img {
+        transition: all .4s ease;
+      }
+      position: relative;
+      &::after {
+        content: " ";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        top: auto;
+        bottom: .2em;
+        transform-origin: left;
+        transform: scaleX(0);
+        background-color: $highlight-color;
+        transition: transform .4s ease;
+      }
+      &.active {
+        
+        color: $highlight-color;
+        &::after {
+          transform: scaleX(1);
+        }
+      
+      }
+     
+    }
+  }
+  .sub-selector-items {
+    position: relative;
+  }
+  .sub-selector-item {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    height: 100%;
+    transition: opacity .4s ease;
+    pointer-events: none;
+    z-index: -1;
+    &.active {
+      display: block;
+      animation-fill-mode: forwards;
+      -webkit-animation-duration: 0.4s;
+      animation-duration: 0.4s;
+      position: static;
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}

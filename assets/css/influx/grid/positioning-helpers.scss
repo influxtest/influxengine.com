@@ -1,0 +1,19 @@
+.abs {
+  position: absolute;
+  &.bottom {
+    top: auto;
+    bottom: 0;
+  }
+  &.top {
+    top: 0;
+    bottom: auto;
+  }
+  &.left {
+    left: 0;
+    right: auto;
+  }
+  &.right {
+    right: 0;
+    left: auto;
+  }
+}

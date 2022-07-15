@@ -1,0 +1,71 @@
+// VARIABLES
+
+/* SIZES */
+
+$fullhd: 1400px !default;
+$widescreen: 1280px !default;
+$desktop: 1024px !default;
+$tablet: 840px !default;
+$mobile: 480px !default;
+$gutter: 50px !default;
+$margin-desktop: 100px !default;
+$margin-touch: 25px !default;
+
+/* COLORS */
+
+$highlight-color: #ff00ff !default;
+$spot-color: lighten($highlight-color, 15%) !default;
+$accent-color: #00ff00 !default;
+$border-color: #cacaca !default;
+$body-color: #000000 !default;
+$dark-color: #615545 !default;
+$title-color: $highlight-color !default;
+
+/* TYPOGRAPHY */
+
+$title-font: Arial, Helvetica, sans-serif !default;
+$body-font: Arial, Helvetica, sans-serif !default;
+
+
+$title-light: 200 !default;
+$title-normal: 300 !default;
+$title-medium: 400 !default;
+$title-heavy: 600 !default;
+
+$body-light: 300 !default;
+$body-normal: 400 !default;
+$body-medium: 400 !default;
+$body-bold: 600 !default;
+$subtitle-size: 60px;
+
+$title-xl-size: 80px !default;
+$title-lg-size: 60px !default;
+$title-md-size: 40px !default;
+$title-sm-size: 30px !default;
+$title-xs-size: 20px !default;
+
+
+
+$title-xl-lh: 1 !default;
+$title-lg-lh: 1.2 !default;
+$title-md-lh: 1.2 !default;
+$title-sm-lh: 1.2 !default;
+$title-xs-lh: 1.2 !default;
+
+$intro-lh: 1.4 !default;
+$lead-lh: 1.4 !default;
+$body-lh: 1.4 !default;
+
+$nav-title: 22px !default;
+
+$intro-size: 30px !default;
+$intro-lh: 1.4 !default;
+$intro-weight: 200 !default;
+
+$lead-size: 22px !default;
+$lead-lh: 1.6 !default;
+$lead-weight: 300 !default;
+
+$body-size: 16px !default;
+$body-lh: 1.4 !default;
+$body-weight: 300 !default;

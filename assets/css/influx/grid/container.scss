@@ -1,0 +1,31 @@
+.container {
+  max-width: $fullhd + ($margin-desktop * 2);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $margin-desktop;
+  padding-right: $margin-desktop;
+  
+  @media (max-width: $tablet) {
+    padding-left: $margin-touch;
+    padding-right: $margin-touch;
+  }
+}
+
+
+
+.container-half {
+  max-width: ($fullhd + ($margin-desktop * 2)) / 2;
+  &.left {
+    padding-left: $margin-desktop;
+    margin-left: auto;
+  }
+  &.right {
+    padding-right: $margin-desktop;
+    margin-right: auto;
+  }
+  @include bp(tablet) {
+    padding-left: $margin-touch !important;
+    padding-right: $margin-touch !important;
+  }
+}
+

@@ -1,0 +1,31 @@
+.mobile-cta {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  display: none;
+  transform: translateY(100%);
+  transition: transform .4s ease;
+  .scrolled & {
+    transform: none;
+  }
+  @include bp(tablet) {
+    display: flex;
+  } 
+  a {
+    flex: 1 1 0;
+    display: inline-flex;
+    padding: 10px 15px;
+    background: $highlight-color;
+    text-align: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    padding-bottom: 15px;
+    &:nth-child(2) {
+      background: $accent-color;
+    }
+  }
+}

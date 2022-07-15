@@ -1,0 +1,6 @@
+.anchor {
+	position: absolute;
+	@include bp(tablet) {
+		margin-top: -50px;
+	}
+}

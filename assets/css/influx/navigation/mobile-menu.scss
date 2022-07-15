@@ -1,0 +1,183 @@
+
+/* MOBILE MENU */
+
+.mobile-menu {
+	transition: transform .4s cubic-bezier(0.6, 0.2, 0.1, 1) 0s, opacity .4s cubic-bezier(0.6, 0.2, 0.1, 1) 0s;
+	box-shadow: -10px 10px 20px 0 rgba(0, 0, 0, 0.03);
+	position: fixed;
+	height: 100%;
+	width: calc(100% - 40px);
+	top: 0;
+	right: 0;
+	background: white;
+	z-index: 50;
+	margin: 0 0;
+	transform: translate(100%,0);
+	padding-top: 70px;
+  padding-bottom: 70px;
+  padding-right: 40px;
+	overflow-y: auto;
+  overflow-x: hidden;
+  hr {
+    margin: 20px 0;
+    margin-top: 0;
+    height: 1px;
+    background: #ccc;
+    width: calc(100% - 20px);
+  }
+	.menu-button {
+    display: block;
+    position: fixed;
+    top: 35px;
+    right: 25px;
+    
+    
+    label {
+      color: black;
+    }
+    span {
+      background-color: black;
+    }
+    
+  }
+	&.open {
+		transform: translate(0%,0);
+	}
+	.mobile-menu__back {
+		position: fixed;
+		left: 40px;
+		top: $gutter / 2;
+		color: $highlight-color;
+		cursor: pointer;
+		opacity: 1;
+		transition: opacity .4s ease;
+		font-weight: $body-medium;
+		&::after {
+			content: "Menu";
+		}
+		&::before {
+			
+      content: " ";
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230064D9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 18l-6-6 6-6'/%3E%3C/svg%3E");
+      
+      position: absolute;
+      margin-top: 4px;
+      margin-left: -25px;
+      width: 20px;
+      height: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      opacity: 0;
+			transition: opacity 0.4s ease;
+			
+			filter: grayscale(100%);
+		}
+		&.sub-level {
+			opacity: 1;
+			&::after {
+				content: "Back";
+			}
+			
+			&::before {
+				opacity: 1;
+			}
+		}
+	}
+	i {
+		position: absolute;
+		
+		
+		margin-left: 10px;
+		
+		&:after {
+			opacity: 0;
+			color: white;
+			font-family: "Font Awesome 5 Pro";
+			font-size: 15px;
+			font-style: normal;
+			font-variant-caps: normal;
+			font-variant-ligatures: normal;
+			font-weight: 900;
+			text-rendering: auto;
+			-webkit-font-smoothing: antialiased;
+			content: "\f054";
+		}
+	}
+	//section level
+	
+	ul {
+		position: absolute;
+		top: 0;
+		left: 0;
+		pointer-events: none;
+		width: 100%;
+		list-style: none;
+		padding-left: 0;
+		li {
+			margin-bottom: 0;
+			animation-duration: .4s;
+      will-change: transform;
+      &.mobile-menu__border-bottom {
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+      }
+			@for $i from 0 through 24 {
+				&:nth-of-type(#{$i}) {
+					-webkit-animation-delay: $i * .02s;
+					animation-delay: $i * .02s;
+				}
+			}
+			opacity: 0;
+			&.fadeInRight,&.fadeInLeft {
+				pointer-events: all;
+				a {
+					i {
+						&:after {
+							opacity: 1;
+						}
+					}
+				}
+			}
+			a {
+				color: $highlight-color;
+				font-size: $subtitle-size;
+				font-weight: $body-normal;
+				font-size: 18px;
+				line-height: 1.2;
+				padding-bottom: 15px;
+				display: block;
+				
+			}
+			// sub section level
+			
+		}
+		> ul {
+			pointer-events: none;
+			li {
+				&.fadeInRight {
+					pointer-events: all;
+				}
+				
+				// procedure level
+
+				> ul {
+					pointer-events: none;
+					li {
+						&.fadeInRight {
+							pointer-events: all;
+						}
+					}	
+				}	
+			}
+		}
+	}
+
+	> ul {
+		position: relative;
+	}
+	
+	@media screen and (min-width: $desktop) {
+		display: none;
+	}
+}

@@ -1,0 +1,192 @@
+// TYPOGRAPHY
+
+/* DEFAULTS */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: black;
+  font-family: $title-font;
+  font-weight: $title-light;
+  margin-bottom: 35px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
+  .block {
+    @include bp(tablet) {
+      display: block;
+    }
+  }
+}
+
+p,
+body {
+  font-size: $body-size;
+  font-family: $body-font;
+  font-weight: $body-weight;
+  color: $body-color;
+  line-height: $body-lh;
+}
+
+
+p {
+  margin-bottom: 35px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+strong {
+  font-weight: $body-bold;
+}
+
+.black {
+  color: black !important;
+}
+
+.white {
+  color: white !important;
+}
+
+.highlight-color {
+  color: $highlight-color !important;
+}
+
+.accent-color {
+  color: $accent-color !important;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center-touch {
+  @include bp(tablet) {
+    text-align: center;
+  }
+}
+
+.text-justified {
+  text-align: justify;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+  &-desktop {
+    @include mw(tablet) {
+      text-align: right;
+    }
+  }
+}
+
+.text-shadow {
+  text-shadow: 0px 0px 50px rgba(0, 0, 0, 0.25);
+}
+
+.uppercase {
+  text-transform: uppercase !important;
+}
+
+.lowercase {
+  text-transform: lowercase !important;
+}
+
+/* MAIN STYLES */
+
+.title-xl {
+  font-family: $title-font;
+  font-size: $title-xl-size;
+  line-height: $title-xl-lh;
+  font-weight: $title-light;
+  @include clamp(50px, $title-xl-size);
+  &-touch {
+    @include bp(tablet) {
+      font-size: $title-xl-size !important;
+    }
+  }
+  &-mobile {
+    @include bp(mobile) {
+      @include bp(tablet) {
+        font-size: $title-xl-size !important;
+      }
+    }
+  }
+}
+
+.title-lg {
+  font-family: $title-font;
+  font-size: $title-lg-size;
+  line-height: $title-lg-lh;
+  font-weight: $title-light;
+  @include clamp(32px, $title-lg-size);
+  &-touch {
+    @include bp(tablet) {
+      font-size: $title-lg-size !important;
+    }
+  }
+  &-mobile {
+    @include bp(mobile) {
+      @include bp(tablet) {
+        font-size: $title-lg-size !important;
+      }
+    }
+  }
+}
+
+.title-md {
+  font-family: $title-font;
+  font-size: $title-md-size;
+  line-height: $title-md-lh;
+  font-weight: $title-light;
+  @include clamp(32px, $title-md-size);
+  &-touch {
+    @include bp(tablet) {
+      font-size: $title-md-size !important;
+    }
+  }
+  &-mobile {
+    @include bp(mobile) {
+      @include bp(tablet) {
+        font-size: $title-md-size !important;
+      }
+    }
+  }
+}
+
+.title-sm { 
+  font-family: $title-font;
+  font-size: $title-sm-size;
+  line-height: $title-sm-lh;
+  font-weight: $title-light;
+  @include clamp(24px, $title-sm-size);
+}
+
+.title-xs { 
+  font-family: $title-font;
+  font-size: $title-xs-size;
+  line-height: $title-xs-lh;
+  font-weight: $title-light;
+  @include clamp($title-xs-size * .7 , $title-xs-size);
+}
+
+.intro {
+  font-family: $body-font;
+  font-size: $intro-size;
+  line-height: $intro-lh;
+  font-weight: $intro-weight;
+  @include clamp(18px, $intro-size);
+}
+
+.lead {
+  font-family: $body-font;
+  font-size: $lead-size;
+  line-height: $lead-lh;
+  font-weight: $lead-weight;
+  @include clamp(22px, $lead-size);
+}

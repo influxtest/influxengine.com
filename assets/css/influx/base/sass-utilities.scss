@@ -1,0 +1,69 @@
+@mixin bp($point) {
+	@if $point == fullhd {
+    @media (max-width: $fullhd) { @content; }
+  }
+	@if $point == widescreen {
+    @media (max-width: $widescreen) { @content; }
+  }
+  @if $point == desktop {
+    @media (max-width: $desktop) { @content; }
+  }
+  @else if $point == tablet {
+    @media (max-width: $tablet) { @content; }
+  }
+  @else if $point == mobile {
+    @media (max-width: $mobile)  { @content; }
+  }
+}
+
+@mixin mw($point) {
+	@if $point == fullhd {
+    @media (min-width: $fullhd + 1px) { @content; }
+  }
+	@if $point == widescreen {
+    @media (min-width: $widescreen + 1px) { @content; }
+  }
+  @if $point == desktop {
+    @media (min-width: $desktop + 1px) { @content; }
+  }
+  @else if $point == tablet {
+    @media (min-width: $tablet + 1px) { @content; }
+  }
+  @else if $point == mobile {
+    @media (min-width: $mobile + 1px)  { @content; }
+  }
+}
+
+
+@mixin clamp($minsize, $maxsize) {
+  $scalesize: getfontvw($maxsize) / 1;
+  $scalesize: strip-unit($scalesize) + vw;
+  
+  $clamp-size: #{'min(max(#{$minsize}, #{$scalesize}), #{$maxsize})'};
+  font-size: $clamp-size;
+}
+
+@mixin clampHeight($minsize, $maxsize) {
+  $scalesize: getfontvw($maxsize) / 1;
+  $scalesize: strip-unit($scalesize) + vw;
+  
+  $clamp-size: #{'min(max(#{$minsize}, #{$scalesize}), #{$maxsize})'};
+  max-height: $clamp-size;
+}
+
+
+@function getfontvw($fontsize) {
+  $result: 0vw;
+
+  $result: ($fontsize / 1600) * 100;
+  
+  @return $result +  0vw;
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}

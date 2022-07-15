@@ -1,0 +1,230 @@
+# AuthType Basic
+# AuthName "Protected"
+# AuthUserFile /nfs/c03/h08/mnt/170644/domains/micromachine.influxmarketing.com/html/.htpasswd
+# Require valid-user
+# ----------------------------------------------------------------------
+# | ETags                                                              |
+# ----------------------------------------------------------------------
+
+# Remove `ETags` as resources are sent with far-future expires headers.
+#
+# https://developer.yahoo.com/performance/rules.html#etags
+# https://tools.ietf.org/html/rfc7232#section-2.3
+
+# `FileETag None` doesn't work in all cases.
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+
+FileETag None
+
+# ----------------------------------------------------------------------
+# | Extra Security Headers                                             |
+# ----------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+	Header set X-XSS-Protection "1; mode=block"
+	Header always append X-Frame-Options SAMEORIGIN
+	Header set X-Content-Type-Options nosniff
+</IfModule>
+
+# ----------------------------------------------------------------------
+# | Expires headers                                                    |
+# ----------------------------------------------------------------------
+
+# Serve resources with far-future expires headers.
+#
+# (!) If you don't control versioning with filename-based
+# cache busting, you should consider lowering the cache times
+# to something like one week.
+#
+# https://httpd.apache.org/docs/current/mod/mod_expires.html
+
+<IfModule mod_expires.c>
+
+    ExpiresActive on
+    ExpiresDefault                                      "access plus 1 year"
+
+  # CSS
+
+    ExpiresByType text/css                              "access 1 year"
+
+
+  # Data interchange
+
+    ExpiresByType application/atom+xml                  "access plus 1 hour"
+    ExpiresByType application/rdf+xml                   "access plus 1 hour"
+    ExpiresByType application/rss+xml                   "access plus 1 hour"
+
+    ExpiresByType application/json                      "access plus 0 seconds"
+    ExpiresByType application/ld+json                   "access plus 0 seconds"
+    ExpiresByType application/schema+json               "access plus 0 seconds"
+    ExpiresByType application/vnd.geo+json              "access plus 0 seconds"
+    ExpiresByType application/xml                       "access plus 0 seconds"
+    ExpiresByType text/xml                              "access plus 0 seconds"
+
+
+  # Favicon (cannot be renamed!) and cursor images
+
+    ExpiresByType image/vnd.microsoft.icon              "access plus 1 week"
+    ExpiresByType image/x-icon                          "access plus 1 week"
+
+  # HTML
+
+    ExpiresByType text/html                             "access plus 0 seconds"
+
+
+  # JavaScript
+
+    ExpiresByType application/javascript                "access plus 1 year"
+    ExpiresByType application/x-javascript              "access plus 1 year"
+    ExpiresByType text/javascript                       "access plus 1 year"
+    ExpiresByType text/x-javascript                     "access plus 1 year"
+
+
+  # Manifest files
+
+    ExpiresByType application/manifest+json             "access plus 1 week"
+    ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
+    ExpiresByType text/cache-manifest                   "access plus 0 seconds"
+
+
+  # Media files
+
+    ExpiresByType audio/ogg                             "access plus 1 year"
+    ExpiresByType image/bmp                             "access plus 1 year"
+    ExpiresByType image/gif                             "access plus 1 year"
+    ExpiresByType image/jpg                             "access plus 1 year"
+    ExpiresByType image/jpeg                            "access plus 1 year"
+    ExpiresByType image/png                             "access plus 1 year"
+    ExpiresByType image/svg+xml                         "access plus 1 year"
+    ExpiresByType image/webp                            "access plus 1 year"
+    ExpiresByType video/mp4                             "access plus 1 year"
+    ExpiresByType video/ogg                             "access plus 1 year"
+    ExpiresByType video/webm                            "access plus 1 year"
+
+
+  # Web fonts
+
+    # Embedded OpenType (EOT)
+    ExpiresByType application/vnd.ms-fontobject         "access plus 1 year"
+    ExpiresByType font/eot                              "access plus 1 year"
+
+    # OpenType
+    ExpiresByType font/opentype                         "access plus 1 year"
+
+    # TrueType
+    ExpiresByType application/x-font-ttf                "access plus 1 year"
+
+    # Web Open Font Format (WOFF) 1.0
+    ExpiresByType application/font-woff                 "access plus 1 year"
+    ExpiresByType application/x-font-woff               "access plus 1 year"
+    ExpiresByType font/woff                             "access plus 1 year"
+
+    # Web Open Font Format (WOFF) 2.0
+    ExpiresByType application/font-woff2                "access plus 1 year"
+
+
+  # Other
+
+    ExpiresByType text/x-cross-domain-policy            "access plus 1 week"
+
+</IfModule>
+
+
+##########################################
+#compression of files for faster page load
+##########################################
+
+AddOutputFilterByType DEFLATE "application/atom+xml" \
+                              "application/javascript" \
+                              "application/json" \
+                              "application/ld+json" \
+                              "application/manifest+json" \
+                              "application/rdf+xml" \
+                              "application/rss+xml" \
+                              "application/schema+json" \
+                              "application/vnd.geo+json" \
+                              "application/vnd.ms-fontobject" \
+                              "application/x-font-ttf" \
+                              "application/x-javascript" \
+                              "application/x-web-app-manifest+json" \
+                              "application/xhtml+xml" \
+                              "application/xml" \
+                              "font/eot" \
+                              "font/opentype" \
+                              "image/bmp" \
+                              "image/svg+xml" \
+                              "image/vnd.microsoft.icon" \
+                              "image/x-icon" \
+                              "text/cache-manifest" \
+                              "text/css" \
+                              "text/html" \
+                              "text/javascript" \
+                              "text/plain" \
+                              "text/vcard" \
+                              "text/vnd.rim.location.xloc" \
+                              "text/vtt" \
+                              "text/x-component" \
+                              "text/x-cross-domain-policy" \
+                              "text/xml"
+
+
+
+RewriteEngine on
+
+# Adaptive-Images -----------------------------------------------------------------------------------
+
+# Send any GIF, JPG, or PNG request to adaptive-images.php so we can select appropriately sized versions
+RewriteRule \.(?:jpe?g|gif|png)$ adaptive-images.php
+
+# END Adaptive-Images -------------------------------------------------------------------------------
+
+#NEW SITE REDIRECTION & REWRITE
+
+RewriteCond %{HTTP_HOST} !inflx [NC]
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# IF SITE IS WWW
+RewriteCond %{HTTP_HOST} !inflx [NC]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#IF SITE IS NON-WWW
+#RewriteCond %{HTTP_HOST} !inflx [NC]
+#RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+#RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+#TRAILING SLASH REDIRECTION#
+RewriteCond %{REQUEST_URI} /+[^\.]+$
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+
+#FORCE ALL LOWERCASE URLS
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond expr "tolower(%{REQUEST_URI}) =~ /(.*)/"
+RewriteRule [A-Z] %1 [R=301,L]
+
+#Gallery URL Rewrites
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^gallery\/([^\/]+)\/([^\/]+)\/([^\/]+)\/?$  /gallery/$1/$2/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} !(\.png|\.jpg)$ [NC]
+RewriteRule ^gallery\/([^\/]+)\/([^\/]+)\/([^\/]+)\/?$  /gallery.php?gc=$1&gs=$2&gp=$3 [NC,L]
+RewriteRule ^gallery\/([^\/]+)\/([^\/]+)\/?$  /gallery.php?gc=$1&gs=$2 [NC,L]
+RewriteRule ^gallery/([A-Za-z0-9-]+)/?$ /gallery.php?gc=$1 [NC,L] # Process parrots
+RewriteRule ^gallery/$ /gallery.php [NC,L] # Process parrots
+
+#Block Direct Access to CSS/JS files
+RewriteRule ^.*\.(css|scss)$ - [F,L,NC]
+RewriteRule ^.*\.(js)$ - [F,L,NC]
+
+#landingi rewrite
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^landing\/(.*)\/$ /landing/index.php [NC,L,QSA]
+
+ErrorDocument 404 /404/index.php
+
+RewriteRule ^sitemap/$ /sitemap.xml [R=301,L]

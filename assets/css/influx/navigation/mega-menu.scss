@@ -1,0 +1,597 @@
+.mega-menu {
+  padding-top: $gutter / 2;
+  padding-bottom: $gutter / 2;
+  opacity: 0;
+  display: none;
+
+  hr {
+    background: $border-color;
+  }
+
+  flex-direction: column;
+  .top-menu-wrapper {
+    background-color: $accent-color;
+  }
+  .top-menu {
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      flex: 1 1 0;
+      li {
+        flex-basis: calc(100% / var(--columnCount));
+        a {
+          font-family: $title-font;
+          font-size: $nav-title;
+          padding: 10px 0;
+          line-height: 1.5;
+          @include bp(desktop) {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .main-menu {
+    display: flex;
+    justify-content: space-between;
+    ul {
+      list-style: none;
+      flex: 1 1 0;
+      flex-basis: calc(100% / var(--columnCount));
+      @include bp(desktop) {
+        cursor: pointer;
+      }
+      ul {
+        margin-top: 20px;
+      }
+      li {
+        &:first-of-type {
+          a {
+            font-family: $title-font;
+            font-size: $nav-title;
+            line-height: 1.5;
+          }
+        }
+        a {
+          font-family: $body-font;
+          padding: 10px 0;
+          line-height: 1;
+          &.active {
+            color: $highlight-color;
+          }
+        }
+      }
+    }
+    .nav-top {
+      font-family: $title-font !important;
+      font-size: $nav-title !important;
+      color: $accent-color;
+    }
+  }
+
+  .open & {
+    display: flex;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: fadeInFromNone;
+    animation-name: fadeInFromNone;
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+  }
+}
+
+//MOBILE STYLING
+@include bp(desktop) {
+  .mega-menu {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    .flexy-item {
+      margin-bottom: 0;
+      img {
+        display: none;
+      }
+    }
+    .scrolled & {
+      padding-top: 0;
+    }
+    .top-menu {
+      ul {
+        display: block;
+      }
+    }
+    .main-menu {
+      display: block;
+      ul {
+        ul {
+          margin-top: 0px;
+        }
+      }
+      li {
+        will-change: max-height;
+
+        max-height: 0;
+        overflow: hidden;
+        transform-origin: top;
+        transition: color 0.4s ease, max-height 0.8s ease, opacity 0.8s;
+        opacity: 0;
+
+        &:first-child {
+          max-height: none;
+          opacity: 1;
+          a {
+            position: relative;
+            &:hover {
+              color: inherit;
+            }
+            &::after {
+              content: " ";
+              border: 3px solid transparent;
+              border-radius: 2px;
+              border-right: 0;
+              border-top: 0;
+              right: -1em;
+              display: block;
+              height: 0.625em;
+              margin-top: -0.4375em;
+              pointer-events: none;
+              position: absolute;
+              top: 50%;
+              transform: rotate(-135deg) scale(0.8) translateY(-4px);
+              transition: transform 0.4s ease, border-color 0.4s ease;
+              transform-origin: center;
+              width: 0.625em;
+              border-color: $highlight-color;
+            }
+          }
+        }
+        &.active {
+          color: $highlight-color;
+
+          a::after {
+            border-color: $highlight-color;
+            transform: rotate(-45deg) scale(0.8);
+          }
+          & ~ li {
+            max-height: 50px;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* AM I TO CREATE THE PERFECT SYSTEM */
+
+html.open {
+  overflow-y: scroll !important;
+  width: 100%;
+  position: fixed !important;
+  //When the menu opens, the Mega Menu script stores the scroll position as a fixed top offset (see toggleHtmlOpen() in scripts.js)
+  //This prevents the body from being scrolled in the background, and then the scroll position is restored from the offset once the menu closes.
+}
+
+@-webkit-keyframes fadeMenuItem {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeMenuItem {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// MEGA MATRIX CODE
+
+.has-mega-matrix {
+  transition: height 0.4s ease;
+
+  .menu-selectors {
+    a {
+      cursor: pointer;
+      position: relative;
+      &:hover {
+        color: inherit;
+      }
+      &::after {
+        border: 3px solid transparent;
+        border-radius: 2px;
+        border-right: 0;
+        border-top: 0;
+        right: -1em;
+        content: " ";
+        display: block;
+        height: 0.625em;
+        margin-top: -0.4375em;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        transform: rotate(-135deg) scale(0.8) translateY(-4px);
+        transition: transform 0.4s ease, border-color 0.4s ease;
+        transform-origin: center;
+        width: 0.625em;
+        border-color: white;
+      }
+      &.no-menu {
+        &::after {
+          content: none !important;
+        }
+      }
+    }
+
+    .active {
+      color: $highlight-color;
+      a::after {
+        transform: rotate(-45deg) scale(0.8) translateY(-4px);
+        
+        border-color: $highlight-color;
+      }
+    }
+  }
+  .main-menu-items {
+    position: relative;
+    overflow: hidden;
+  }
+  .main-menu {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    width: 100%;
+    height: 100%;
+
+    &.active {
+      pointer-events: all;
+      opacity: 1;
+      position: relative;
+    }
+  }
+  .menu-back {
+    display: none !important;
+  }
+  .top-menu-mobile {
+    display: none !important;
+  }
+  @include bp(desktop) {
+    .menu-back {
+      display: block !important;
+    }
+    .main-menu {
+      max-height: 0;
+      overflow: hidden;
+      li:first-child {
+        max-height: 0;
+      }
+      &.active {
+        max-height: 200vh;
+        overflow: auto;
+        li:first-child {
+          max-height: 50px;
+        }
+      }
+    }
+    .mega-menu {
+      flex-direction: column;
+      justify-content: flex-start;
+      position: relative;
+    }
+    .top-menu-mobile {
+      display: block !important;
+      a {
+        &::after {
+          content: none !important;
+        }
+      }
+    }
+    .no-menu {
+      &::after {
+        content: none !important;
+      }
+    }
+    .menu-selectors {
+      ul {
+        li {
+          transition: max-height 0.6s ease;
+          max-height: 0px;
+          overflow: hidden;
+          &.active {
+            max-height: 50px;
+          }
+        }
+
+        &.menu-back {
+          li {
+            max-height: 50px !important;
+            color: inherit;
+            a::after {
+              border-color: inherit;
+              transform: rotate(45deg) scale(0.8);
+            }
+          }
+        }
+      }
+
+      &.active {
+        + hr {
+          display: none;
+        }
+        ul {
+          li {
+            max-height: 50px;
+            color: inherit !important;
+            a::after {
+              border-color: inherit;
+              transform: rotate(-135deg) scale(0.8) translateY(-4px);
+            }
+          }
+
+          &.menu-back {
+            li {
+              max-height: 0px !important;
+              overflow: hidden;
+            }
+          }
+        }
+      }
+      a {
+        position: relative;
+        &:hover {
+          color: inherit;
+        }
+        &::after {
+          border: 3px solid transparent;
+          border-radius: 2px;
+          border-right: 0;
+          border-top: 0;
+          right: -1em;
+          content: " ";
+          display: block;
+          height: 0.625em;
+          margin-top: -0.4375em;
+          pointer-events: none;
+          position: absolute;
+          top: 50%;
+          transform: rotate(-135deg) scale(0.8) translateY(-4px);
+          transition: transform 0.4s ease, border-color 0.4s ease;
+          transform-origin: center;
+          width: 0.625em;
+          border-color: white;
+        }
+      }
+      .menu-back {
+        a {
+          padding-left: 1em;
+          &::after {
+            transform: rotate(45deg) scale(0.8);
+            right: auto;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// MEGA MATRIX CODE w/IMAGES
+
+.nav-img-height {
+  height: 35vh;
+  @include bp(widescreen) {
+    height: 25vh !important;
+  }
+}
+
+.img-matrix {
+  .mega-menu {
+    background: white;
+    padding-bottom: 35px;
+    padding-top: 0;
+    @include bp(desktop){
+      height: calc(100vh);
+    }
+    .container {
+      width: 100%;
+      padding-top: 25px;
+      background-color: $accent-color;
+      padding-left: 30px;
+      padding-right: 30px;
+  
+      @include bp(desktop) {
+        padding-left: 25px;
+        padding-right: 25px;
+        background-color: white;
+      }
+    }
+  
+    li {
+      line-height: 2em;
+      a {
+        color: #000;
+      }
+      &:hover {
+        a {
+          color: $highlight-color;
+        }
+      }
+    }
+  
+    .top-menu {  
+      a {
+        line-height: 2 !important;
+        &::after {
+          border-color: $highlight-color !important;
+        }
+      }
+  
+      .active a {
+        color: $accent-color !important;
+      }
+  
+      .menu-back a {
+        font-size: 16px !important;
+      }
+  
+      ul {
+        li {
+          a {
+            font-family: $body-font;
+          }
+        }
+      }
+  
+      .menuAda {
+        padding-top: 0!important;
+      }
+  
+      @media screen and (min-width: $desktop + 1px) {
+        li {
+          padding: 0 15px;
+          position: relative;
+          &.active a::after {
+            display: block;
+          }
+  
+          &.active::after {
+            content: "";
+            position: absolute;
+            height: calc(100% + 50px);
+            width: 100%;
+            top: 0;
+            left: 50%;
+            background-color: #fff;
+            transform: translateX(-50%);
+          }
+  
+          a {
+            z-index: 1;
+            display: inline-block;
+            &::after {
+              content: url(/assets/img/_defaults/arrow-right-black.svg);
+              text-align: center;
+              line-height: 1;
+              margin-top: 15px;
+              transform: rotate(90deg) !important;
+              display: none;
+              border: unset;
+              border-radius: unset;
+              border-right: unset;
+              border-top: unset;
+              right: unset;
+              height: unset;
+              margin-top: unset;
+              pointer-events: unset;
+              position: unset;
+              top: unset;
+              transition: unset;
+              transform-origin: unset;
+              width: unset;
+              border-color: unset;
+            }
+          }
+        }
+  
+        .top-menu-menu a {
+          color: white;
+          @include clamp(16px, 20px); 
+        }
+      }
+    }
+  
+    .main-menu-items {
+      overflow: visible;
+      .main-menu {
+        @include bp(desktop) {
+          padding: 0 25px;
+        }
+  
+        ul {
+          li {
+            a {
+              &:first-of-type {
+                font-family: $body-font;
+              }
+            }
+          } 
+        } 
+  
+        .flexy {
+          width: 100%;
+          padding: 5px 15px;
+          @include bp(desktop) {
+            display: block;
+            .nav-img-container {
+              display: none;
+            }
+          }
+  
+          .flexy-item {
+            padding: 5px 15px;
+            .nav-img-container {
+              overflow: hidden;
+              margin-top: 15px;
+              img {
+                object-position: center;
+                max-height: 400px;
+                transition: transform 0.4s ease-in-out;
+              }
+            }
+  
+            li {
+              &:first-of-type {
+                @include clamp(16px, 22px);
+              }
+  
+              &:first-of-type a {
+                color: $accent-color!important;
+              }
+  
+              &.active a {
+                color: $accent-color !important;
+  
+                &::after {
+                  border-color: $accent-color;
+                }
+              }
+  
+              a {
+                padding: 0;
+                &:hover{
+                  color: $highlight-color;
+                }
+  
+                &::after {
+                  border-color: $highlight-color;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.nav-socials {
+  display: none;
+  @include bp(desktop) {
+    display: flex;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+}
+
+.menuAda {
+  margin-left: 25px;
+  font-size: 26px;
+  cursor: pointer;
+}

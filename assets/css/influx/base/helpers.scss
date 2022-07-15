@@ -1,0 +1,221 @@
+.visible-fix {
+  visibility: visible !important;
+  animation-name: fadeIn !important;
+}
+
+/* SHADOWS */
+
+$box-shadow-light: 0px 0px 40px rgba(0, 0, 0, 0.15) !default;
+
+.box-shadow-light {
+  box-shadow: $box-shadow-light;
+}
+
+$box-shadow-dark: 0px 0px 50px rgba(0, 0, 0, 0.25) !default;
+
+.box-shadow-dark {
+  box-shadow: $box-shadow-dark;
+}
+
+$box-shadow-smooth: 0px 2.76726px 2.21381px rgba(0, 0, 0, 0.0196802),
+0px 6.6501px 5.32008px rgba(0, 0, 0, 0.0282725),
+0px 12.5216px 10.0172px rgba(0, 0, 0, 0.035),
+0px 22.3363px 17.869px rgba(0, 0, 0, 0.0417275),
+0px 41.7776px 33.4221px rgba(0, 0, 0, 0.0503198),
+0px 100px 80px rgba(0, 0, 0, 0.07) !default;
+
+.box-shadow-smooth {
+  box-shadow: $box-shadow-smooth;
+}
+
+.relative {
+  position: relative !important;
+}
+
+.block {
+  display: block;
+
+  @include bp(tablet) {
+    display: inline;
+  }
+}
+
+.nolink {
+  cursor: default;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+:root {
+  --desktopWidth: $desktop;
+  --tabletWidth: $tablet;
+  --marginDesktop: $margin-desktop;
+  --marginTouch: $margin-touch;
+  --fullHd: $fullhd;
+}
+
+.ratings {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .ratings-stars {
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    padding-bottom: 5px;
+
+    &:last-of-type {
+      padding-right: .5em;
+    }
+  }
+}
+
+.ratingstars {
+  @extend .ratings;
+
+  .ratings {
+    &-number {
+      font-size: 54px;
+      margin-right: 8px;
+      color: $accent-color;
+    }
+
+    &-stars {
+      img {
+        height: 24px;
+
+        &+img {
+          margin-left: 4px;
+        }
+      }
+    }
+
+    &-text {
+      font-size: 14px;
+    }
+  }
+}
+
+.influx-link {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+
+  @include bp(tablet) {
+    justify-content: center;
+  }
+
+  img {
+    padding-bottom: 5px;
+    padding-right: .5em;
+  }
+}
+
+.swiper-slide {
+  overflow: hidden;
+}
+
+.is-hidden-mobile {
+  @include bp(mobile) {
+    display: none !important;
+  }
+}
+
+.is-hidden-tablet {
+  @include bp(tablet) {
+    display: none !important;
+  }
+}
+
+.is-hidden-desktop {
+  @include bp(desktop) {
+    display: none !important;
+  }
+}
+
+.is-hidden-widescreen {
+  @include bp(widescreen) {
+    display: none !important;
+  }
+}
+
+.is-hidden-fullhd {
+  @include bp(fullhd) {
+    display: none !important;
+  }
+}
+
+.is-visible-mobile {
+  @include mw(mobile) {
+    display: none !important;
+  }
+}
+
+.is-visible-tablet {
+
+  @include mw(tablet) {
+    display: none !important;
+  }
+}
+
+.is-visible-desktop {
+
+  @include mw(desktop) {
+    display: none !important;
+  }
+}
+
+.is-visible-widescreen {
+
+  @include mw(widescreen) {
+    display: none !important;
+  }
+}
+
+.is-visible-fullhd {
+
+  @include mw(fullhd) {
+    display: none !important;
+  }
+}
+
+
+.is-visible-scrolled {
+  display: none;
+
+  .scrolled & {
+    display: inherit;
+  }
+}
+
+.is-hidden-scrolled {
+  .scrolled & {
+    display: none;
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+.z1 {
+  z-index: 1 !important;
+}
+
+.z-neg-1 {
+  z-index: -1 !important;
+}
+
+.filter-white {
+  filter: brightness(0) invert(1);
+}
+
+.filter-black {
+  filter: brightness(0) saturate(100%);
+}

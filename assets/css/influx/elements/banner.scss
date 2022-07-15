@@ -1,0 +1,33 @@
+.banner {
+  &.has-gradient-overlay {
+    &::after {
+      content: ' ';
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 61.45%, rgba(0, 0, 0, 0.2) 100%);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.banner-highlight {
+  background-color: $highlight-color;
+}
+
+.banner-accent-color {
+	background-color: $accent-color;
+}
+
+.banner-grey {
+	background-color: #C4C4C4;
+}
+
+.banner-black {
+	background-color: #111111;
+}
+
+.banner-white {
+	background-color: #fff;
+}

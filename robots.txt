@@ -1,0 +1,9 @@
+User-Agent: *
+Disallow: /landing*
+Disallow: /promotion*
+Disallow: /subpage/
+
+User-agent: ia_archiver
+Disallow: /
+
+Sitemap: /sitemap.xml

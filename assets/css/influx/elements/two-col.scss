@@ -1,0 +1,40 @@
+
+.two-col {
+display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  li {
+    width: calc(50% - 50px);
+  }
+  @include bp(mobile) {
+    display: block;
+    li {
+      width: auto;
+    }
+  }
+
+	&.block-on-tablet {
+		@include bp(tablet) {
+			display: block;
+			> * {
+				width: auto;
+			}
+		}
+
+	}
+}
+
+
+ul {
+  &.two-columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    li {
+      width: calc(50% - 50px);
+    }
+    @include bp(mobile) {
+      display: block;
+    }
+  }
+}

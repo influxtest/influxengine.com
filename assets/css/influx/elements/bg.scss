@@ -1,0 +1,131 @@
+.bg-image {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-position: center center;
+    background-image: var(--bgImage);
+    background-size: cover;
+  }
+  &.bg-noscale {
+    &::after {
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-position: center top;
+    }
+  }
+  &.bg-four-fifths {
+    &::after {
+      width: 80%;
+    }
+  }
+  &.bg-three-fourths {
+    &::after {
+      width: 75%;
+    }
+  }
+  &.bg-two-thirds {
+    &::after {
+      width: 66%;
+    }
+  }
+  &.bg-half {
+    &::after {
+      width: 50%;
+      @include bp(tablet) {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  &.bg-inset-100 {
+    &::after {
+      height: calc(100% - 200px);
+      top: 100px;
+    }
+  }
+  &.bg-100-offset {
+    &::after {
+      height: calc(100% - 100px);
+      @include bp(tablet) {
+        height: 100%;
+      }
+    }
+  }
+  &.bg-stuck-right {
+    overflow: visible;
+    &::after {
+      width: calc(100% + var(--containerOffset));
+      right: calc(var(--containerOffset) * -1);
+    }
+  }
+  &.bg-stuck-left {
+    overflow: visible;
+    &::after {
+      width: calc(100% + var(--containerOffset));
+      left: calc(var(--containerOffset) * -1);
+    }
+  }
+  &.bg-right {
+    &::after {
+      background-position: right;
+    }
+  }
+  &.bg-left {
+    &::after {
+      background-position: left;
+    }
+  }
+  &.bg-top {
+    &::after {
+      background-position: top;
+    }
+  }
+  &.bg-bottom {
+    &::after {
+      background-position: bottom;
+    }
+  }
+  &.bg-position-widescreen  {
+    &::after{
+      @include bp(widescreen) {
+        background-position: var(--bgPosition);
+      }
+    }
+  }
+  &.bg-position-desktop  {
+    &::after{
+      @include bp(desktop) {
+        background-position: var(--bgPosition);
+      }
+    }
+  }
+  &.bg-position-tablet  {
+    &::after{
+      @include bp(tablet) {
+        background-position: var(--bgPosition);
+      }
+    }
+  }
+}
+
+.bg-rotate-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+:root {
+  --containerOffset: 0px;
+}

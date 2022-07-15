@@ -1,0 +1,14 @@
+.collage-3up {
+    z-index: 2;
+    display: flex;
+    gap: 25px;
+    .flexy-item {
+      flex: auto !important;
+    }
+    @include bp(tablet) {
+      align-items: center;
+      .flexy-item {
+        margin-top: unset !important;
+      }
+    }
+}
