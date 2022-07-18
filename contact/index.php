@@ -10,7 +10,7 @@ $section = "contact";
   <div class="container pv50">
     <div class="flexy is-vcentered">
       <div class="flexy-item is-60">
-      <h1 class="title-xl mb10 white animate fadeIn">Page Title <span class="intro white block animate fadeIn">subtitle</span></h1>
+      <h1 class="title-xl mb10 white animate fadeIn">Page Title Nathaniel <span class="intro white block animate fadeIn">subtitle</span></h1>
 
       </div>
       <div class="flexy-item is-40">
