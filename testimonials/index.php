@@ -32,7 +32,7 @@ $section = "";
     <div class="flexy">
       <a class="flexy-item animate fadeIn" href="https://www.realself.com" target="_blank" rel="noopener">
         <h4 class="mb0 highlight-color title-xs text-center">RealSelf</h4>
-        <p class="text-center">5 Stars from 119 Reviews<br>
+        <p class="text-center">9 Stars from 119 Reviews<br>
           <img src="/assets/img/_defaults/icon-stars.svg" class="filter-highlight-color" alt="5 Star Rating" />
         </p>
       </a>
